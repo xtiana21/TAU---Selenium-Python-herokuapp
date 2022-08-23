@@ -1,20 +1,20 @@
-from time import sleep
+import selenium.webdriver
 import pytest
-from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.common.by import By
 
 @pytest.fixture
 def browser():
     #before tests
     global driver
+    # initializam un browser
     s = Service(ChromeDriverManager().install())
-    chrome = webdriver.Chrome(service=s)
-    chrome.maximize_window()
-    chrome.implicitly_wait(3)
+    driver = selenium.webdriver.Chrome(service=s)
+    driver.maximize_window()
+    driver.implicitly_wait(10)
     #return driver
     yield driver
     #after tests
     driver.quit()
-    return
+    return driver
