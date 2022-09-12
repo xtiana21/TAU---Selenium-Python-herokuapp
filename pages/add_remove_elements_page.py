@@ -2,6 +2,7 @@ from selenium.webdriver.common.by import By
 
 class AddRemoveElementsPage:
     #locators
+    TITLE_TEXT = (By.CSS_SELECTOR, "h3")
     ADD_ELEMENT_BUTTON = (By.CSS_SELECTOR, '[onclick="addElement()"]')
     DELETE_BUTTON = (By.CLASS_NAME, "added-manually")
 
@@ -28,5 +29,13 @@ class AddRemoveElementsPage:
 
     def isAddButtonDisplayed(self):
         return self.browser.find_element(*self.ADD_ELEMENT_BUTTON).is_displayed()
+
+    def isDeleteButtonDisplayed(self):
+        return self.browser.find_element(*self.DELETE_BUTTON).is_displayed()
+
+    def getTitlePage(self):
+        return self.browser.find_element(*self.TITLE_TEXT).text
+
+
 
 
